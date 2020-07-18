@@ -7,8 +7,6 @@ $gdt = fopen($gdtpath, "r");
 $contents = fread($gdt, filesize($gdtpath));
 fclose($gdt);
 
-$logfile = fopen("C:\\GDT\\php.log", "w");
-
 $lines = explode("\r\n", $contents);
 $patid = "";
 $gdtdate = "";
@@ -37,9 +35,7 @@ $data = array(
     "Expand" => true
 );
 
-/*$data = "{ \"Level\": \"Study\", \"Query\": { "StudyDate": "$studyDate", "StudyTime": "$studyTime", "PatientID": "$patid" }, "Expand": true }';*/
 $jsdata = json_encode($data);
-fwrite($logfile, "Sending $jsdata\n");
 $options = array(
     'http' => array(
         'method' => 'POST',
@@ -48,16 +44,12 @@ $options = array(
 );
 $context = stream_context_create($options);
 $result = file_get_contents("http://$HOST:$PORT/tools/find", false, $context);
-fwrite($logfile, "Got result: $result\n");
 $js = json_decode($result);
-fwrite($logfile, "Decoded to: ".print_r($js[0]->MainDicomTags->StudyInstanceUID, true). "\n");
 $studyUID = $js[0]->MainDicomTags->StudyInstanceUID;
 $myStudyUID = $js[0]->MainDicomTags->StudyInstanceUID;
-fwrite($logfile, "Got UID: $myStudyUID\n");
 
-$weasisCommand = "runweasis.bat \$weasis:config \"cdb=http://192.168.100.12/weasis\" \$dicom:close -a \$dicom:rs --url \"http://$HOST:$PORT/dicom-web\" " .
+$weasisCommand = "runweasis.bat \$dicom:close -a \$dicom:rs --url \"http://$HOST:$PORT/dicom-web\" " .
     "-r \"studyUID=$myStudyUID\"";
 
-fclose($logfile);
 shell_exec($weasisCommand);
 {/PHP}
