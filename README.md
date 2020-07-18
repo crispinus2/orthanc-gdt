@@ -59,11 +59,9 @@ I like to use Docker Compose for running this image. A sample configuration as w
 
 ### Running on Windows
 
-I recommend to use [Docker Desktop](https://www.docker.com/products/docker-desktop) for running this image on Windows. You can configure which of the Windows machine's ports should map to the internally used ports (DICOM default would be 104, 
-the web interface could remain configured to 8042, if the port is not in use already).
-
-It is also recommended to map local directories to the used volumes (`/var/lib/orthanc/db`, `/var/lib/orthanc/worklist` and `/var/lib/orthanc/GdtIncoming`) as otherwise the stored data wouldn't survive a restart of the Docker container. The last
-of the directories has only to be mapped if you want to use the GDT interface. All generated GDT files will be put into this directory.
+I recommend to use [Docker Desktop](https://www.docker.com/products/docker-desktop) for running this image on Windows. After installation, download [this](/utils/docker-compose.yml) and [this](/utils/runorthanc.bat) file and put them together in a new folder.
+You can then double-click on the batch file to run the orthanc container. It will map the internal DICOM port to 105 and the web interface to 8090. This may be changed by editing the `docker-compose.yml` file with any text editor. If required, you can also
+change the paths that are used as mapping paths for the internal volumes in this file. 
 
 ## Usage
 
