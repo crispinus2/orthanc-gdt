@@ -21,8 +21,12 @@ The file created upon new studies contains all information necessary to let the 
 date and time). Additionally, the study modality and study description is provided as GDT comment lines so that the AIS can display a meaningful line like 'PACS-Datensatz: US: Abdomen' in the
 patient's file to click on. For each study, the file is only created once to prevent double entries in the AIS patient's file.
 
+![Screenshot of patient's file showing the generated entries](/readme-resources/scr-file.jpg?raw=true)
+
 The file create upon Structured Report retrieval contains the measurements supplied as separate test values so that the AIS can import them like it would import results from
 e.g. an external laboratory.
+
+![Screenshot of patient's file showing the generated entries](/readme-resources/scr-labsheet.jpg?raw=true)
 
 ## Compatibility
 
@@ -148,6 +152,8 @@ Zunächst ist hier auch wieder ein passender Auftrag anzulegen:
     müssen verdoppelt werden, also z.B.: `C:\\GDT\\export.gdt`
   * Die notwendigen Informationen, um die Studie aufzufinden (Patienten-ID, Datum und Zeit) werden aus der GDT-Datei entnommen. Leider unterstützt Medical Office (noch) nicht die im
     GDT-Standard mittlerweile vorgesehene Übergabe einer eindeutigen Untersuchungs-ID; das wäre natürlich ein eleganterer Weg, um die passende Studie zu öffnen.
+* Um die Beschränkung zu umgehen, dass PHP nur Dateien ausführen kann, die unterhalb des eigenen Arbeitsverzeichnes liegen (welches dem Medical-Office-Verzeichnis auf dem lokalen Rechner entspricht) wird
+  eine Batch-Datei vom Skript aufgerufen. Diese kann [hier](/utils/runweasis.bat?raw=true) abgerufen werden und muss auf jedem Rechner im Medical-Office-Verzeichnis (meist `C:\MEDOFF`) gespeichert werden.
 
 Wenn alles geklappt hat, kann bei den durch den automatischen Import der bei neuen Studien erzeugten GDT-Dateien angelegten Karteikarteneinträgen durch `Enter` nun der Viewer gestartet werden
 (alternativ ist auch Doppelklick -> Klick auf `Externe Auswertung` möglich). Aus Weasis heraus kann man dann z.B. Ausdrucke machen oder auch CDs brennen bzw. USB-Sticks erzeugen, die dem Patienten 
@@ -167,4 +173,4 @@ We use this in my office to dim the light and close the window's shutters automa
 By adding `GdtGenerator.UrlOnGdtWritten` to Orthanc's configuration, you can make the plugin call the given URL as soon as a GDT file has been created in reaction
 to a new study.
 Our ultrasound device is set up to send its images as soon as `End Exam` is selected on its keyboard, so we can use this to open the shutters and turn up the light again
-when the examination is finished.
+when the examination has finished.
