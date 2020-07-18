@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+    orthanc:
+        image: crispinus/orthanc-gdt:latest
+        ports:
+            - "105:4242"
+            - "8090:8042"
+        volumes:
+            - "./OrthancStorage:/var/lib/orthanc/db"
+            - "./OrthancWorklist:/var/lib/orthanc/worklist"
+            - "./GdtIncoming:/var/lib/orthanc/GdtIncoming"
