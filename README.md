@@ -21,12 +21,12 @@ The file created upon new studies contains all information necessary to let the 
 date and time). Additionally, the study modality and study description is provided as GDT comment lines so that the AIS can display a meaningful line like 'PACS-Datensatz: US: Abdomen' in the
 patient's file to click on. For each study, the file is only created once to prevent double entries in the AIS patient's file.
 
-![Screenshot of patient's file showing the generated entries](/readme-resources/scr-file.jpg?raw=true)
+![Screenshot of patient's file showing the generated entries](/readme-resources/scr-file.png?raw=true)
 
 The file create upon Structured Report retrieval contains the measurements supplied as separate test values so that the AIS can import them like it would import results from
 e.g. an external laboratory.
 
-![Screenshot of patient's file showing the generated entries](/readme-resources/scr-labsheet.jpg?raw=true)
+![Screenshot of patient's file showing the generated entries](/readme-resources/scr-labsheet.png?raw=true)
 
 ## Compatibility
 
