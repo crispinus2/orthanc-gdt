@@ -347,7 +347,7 @@ def OnStoredInstance(dicom, instanceId):
                 result = ''.join([ template.format(length = 9 + len(line[1]), typ = line[0], content = line[1]) for line in gdtlines ])
                 
                 accessionNumber = instanceTags["AccessionNumber"]
-                gdtfile = os.path.join(incomingdir, '{}-sr.gdt'.format(accessionNumber))
+                gdtfile = os.path.join(incomingdir, '{}-sr-{}.gdt'.format(accessionNumber, instanceTags["SOPInstanceUID"]))
                 
                 with codecs.open(gdtfile, encoding="iso-8859-15", mode="w") as f:
                     f.write(result)
