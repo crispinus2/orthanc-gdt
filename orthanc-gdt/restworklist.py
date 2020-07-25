@@ -264,6 +264,17 @@ def OnStoredInstance(dicom, instanceId):
         answer = POOL.apply(ConvertColorspace, args = (instData,))
         orthanc.RestApiPost('/instances', answer)
         orthanc.RestApiDelete('/instances/{}'.format(instanceId))
+    elif dicom.GetInstanceOrigin() == orthanc.InstanceOrigin.DICOM_PROTOCOL and instanceTags["Manufacturer"] == "Sonoscape" and instanceTags["Modality"] == "SR":
+        instData = dicom.SerializeDicomInstance()
+        ds = dcmread(io.BytesIO(instData))
+        ds.SeriesInstanceUID = '.'.join([ds.StudyInstanceUID, '1'])
+        ds.SOPInstanceUID = pydicom.uid.generate_uid()
+        ds.SeriesNumber = str(int(ds.SeriesNumber) + 1)
+        ds.SeriesDescription = "Structured Reports"
+        with io.BytesIO() as out:
+            ds.save_as(out)
+            orthanc.RestApiPost('/instances', out.getvalue())
+        orthanc.RestApiDelete('/instances/{}'.format(instanceId))
     else:
         try:
             config = orthancConfig["GdtGenerator"]
