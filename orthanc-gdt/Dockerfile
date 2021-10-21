@@ -10,7 +10,7 @@ RUN rm ./download-plugins.sh
 
 RUN apt-get -y clean && apt-get -y update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python3.7 libpython3.7 python3-pip && /usr/bin/pip3 install pydicom pillow && \
-    apt-get -y remove python3-pip && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/*
+    apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN ln -snf /usr/share/zoneinfo/Europe/Berlin /etc/localtime && echo "Europe/Berlin" > /etc/timezone
     
