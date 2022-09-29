@@ -13,14 +13,14 @@ EXPOSE 8042
 
 # define a default configuration thanks to environment variables.  They can be overriden at runtime
 
-ENV ORTHANC__PYTHON_SCRIPT = "/scripts/restworklist.py"
-ENV ORTHANC__WORKLISTS__ENABLE = true
-ENV ORTHANC__WORKLISTS__DATABASE = "/var/lib/orthanc/worklist"
-ENV ORTHANC__WORKLISTS__FILTER_ISSUER_AET = false
-ENV ORTHANC__WORKLISTS__CLEANUP_INTERVAL = 600
+ENV ORTHANC__PYTHON_SCRIPT="/scripts/restworklist.py"
+ENV ORTHANC__WORKLISTS__ENABLE="true"
+ENV ORTHANC__WORKLISTS__DATABASE="/var/lib/orthanc/worklist"
+ENV ORTHANC__WORKLISTS__FILTER_ISSUER_AET="false"
+ENV ORTHANC__WORKLISTS__CLEANUP_INTERVAL="600"
 
-ENV ORTHANC__GDT_GENERATOR__ENABLE = true
-ENV ORTHANC__GDT_GENERATOR__INCOMING_DIR = "/var/lib/orthanc/GdtIncoming"
-ENV ORTHANC__GDT_GENERATOR__TRANSMITTED_STUDIES_DATABASE = "/var/lib/orthanc/worklist/gdt-transmitted.db"
+ENV ORTHANC__GDT_GENERATOR__ENABLE="true"
+ENV ORTHANC__GDT_GENERATOR__INCOMING_DIR="/var/lib/orthanc/GdtIncoming"
+ENV ORTHANC__GDT_GENERATOR__TRANSMITTED_STUDIES_DATABASE="/var/lib/orthanc/worklist/gdt-transmitted.db"
 
 ADD ./restworklist.py /scripts/restworklist.py
