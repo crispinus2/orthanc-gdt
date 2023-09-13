@@ -1,6 +1,5 @@
-FROM osimis/orthanc:22.9.2
+FROM osimis/orthanc:23.8.2
 
-MAINTAINER Julian Hartig <julian@whisper-net.de>
 LABEL Description="Docker image of Orthanc, free DICOM server, with plugins and configuration for GDT interfacing with AIS (Arztinformationssystemen)" Vendor="Julian Hartig"
 
 RUN pip install pydicom pillow
